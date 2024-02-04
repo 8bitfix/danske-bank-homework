@@ -44,7 +44,7 @@ databaseChangeLog:
                     references: ACCOUNT(ID)
               - column:
                   name: DATE
-                  type: DATE
+                  type: TIMESTAMP
               - column:
                   name: TRANSACTION
                   type: DECIMAL(10, 2)
