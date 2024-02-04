@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id:  create-initial-tables
+      author:  vladas-narkauskas
+      changes:
+        - createSequence:
+            sequenceName: hibernate_sequence
+            dataType: NUMBER
+            incrementBy: 1
+            schemaName: PUBLIC
+            starValue: 1
+        - createTable:
+            columns:
+              - column:
+                  name:  ID
+                  type:  NUMBER(10, 0)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_ACCOUNT
+                    nullable: false
+              - column:
+                  name: CUSTOMER_ID
+                  type: NUMBER(10, 0)
+              - column:
+                  name: BALANCE
+                  type: DECIMAL(10, 2)
+            schemaName:  PUBLIC
+            tableName:  ACCOUNT
+        - createTable:
+            columns:
+              - column:
+                  name: ID
+                  type: NUMBER(10, 0)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_AUDIT
+                    nullable: false
+              - column:
+                  name: ACCOUNT_ID
+                  type: NUMBER(10, 0)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ACCOUNT_ID
+                    references: ACCOUNT(ID)
+              - column:
+                  name: DATE
+                  type: DATE
+              - column:
+                  name: TRANSACTION
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: BALANCE
+                  type: DECIMAL(10, 2)
+            schemaName: PUBLIC
+            tableName: ACCOUNT_HISTORY
+
